@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://tms-1-ful8.onrender.com/api';
 
 const getToken = () => {
   return localStorage.getItem('token');
