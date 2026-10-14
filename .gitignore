@@ -12,6 +12,9 @@ node_modules/
 dist/
 build/
 coverage/
+/mobile/.expo/
+/mobile/android/
+/mobile/ios/
 
 # Logs
 *.log

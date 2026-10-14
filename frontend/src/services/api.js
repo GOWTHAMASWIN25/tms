@@ -81,7 +81,9 @@ export const complaintService = {
   getById: (id) => api.get(`/complaints/${id}`),
   getStats: () => api.get('/complaints/stats'),
   assign: (id, assignedTo) => api.patch(`/complaints/${id}/assign`, { assignedTo }),
-  updateStatus: (id, status) => api.patch(`/complaints/${id}/status`, { status }),
+  updateStatus: (id, status, resolutionNotes) => api.patch(`/complaints/${id}/status`, { status, resolutionNotes }),
+  addFeedback: (id, rating, feedback) => api.post(`/complaints/${id}/feedback`, { rating, feedback }),
+  addNote: (id, note) => api.post(`/complaints/${id}/notes`, { note }),
   report: (params) => api.get('/complaints/report', { params }),
 };
 

@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthContext, AuthProvider } from './context/AuthContext';
+import { ToastProvider } from './components/Toast';
 import Navbar from './components/Navbar';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
@@ -40,9 +41,10 @@ function App() {
   return (
     <Router>
       <AuthProvider>
-        <div className="app-container">
-          <Navbar />
-          <main className="main-content">
+        <ToastProvider>
+          <div className="app-container">
+            <Navbar />
+            <main className="main-content">
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/login" element={<LoginPage />} />
@@ -131,9 +133,10 @@ function App() {
             </Routes>
           </main>
         </div>
-      </AuthProvider>
-    </Router>
-  );
+      </ToastProvider>
+    </AuthProvider>
+  </Router>
+);
 }
 
 export default App;

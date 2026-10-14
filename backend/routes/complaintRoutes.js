@@ -22,7 +22,9 @@ router.get('/stats', auth, complaintController.getStats);
 router.get('/', auth, complaintController.listComplaints);
 router.patch('/:id/assign', auth, complaintController.assignComplaint);
 router.patch('/:id/status', auth, complaintController.updateStatus);
-router.get('/:id', auth, complaintController.getComplaintById);
+router.post('/:id/feedback', auth, complaintController.addFeedback);
+router.post('/:id/notes', auth, complaintController.addTimelineNote);
 router.get('/report', auth, complaintController.generateReport);
+router.get('/:id', auth, complaintController.getComplaintById);
 
 module.exports = router;

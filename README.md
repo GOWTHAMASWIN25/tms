@@ -119,6 +119,24 @@ TMS-TEST-PROJECT/
    ```
    The app will open on `http://localhost:3000`
 
+### GoExpo Mobile App (Expo)
+
+The native Android/iOS client is in `mobile/` and uses the existing backend API.
+
+1. Install Node.js and Expo Go on your phone. Start MongoDB and the backend as described above.
+2. In a terminal, navigate to `mobile/` and install dependencies:
+   ```bash
+   npm install
+   ```
+3. Copy `mobile/.env.example` to `mobile/.env` and set `EXPO_PUBLIC_API_URL` to your computer's LAN IP, for example `http://192.168.1.25:5000/api`. A physical phone cannot reach your computer using `localhost`; connect both devices to the same network and allow the backend port through the firewall.
+4. Start Expo:
+   ```bash
+   npm start
+   ```
+5. Scan the QR code in Expo Go. Use `npm run android` or `npm run ios` when running an emulator/simulator.
+
+The mobile client includes sign-in with securely stored tokens, a request overview, ticket listing and status updates, a ticket form with optional photo/document attachments, and a SuperAdmin area for staff assignment, reports/CSV export, and department/programme/block/room/role/user management. See [mobile/README.md](./mobile/README.md) for Expo Go testing and EAS preview/store build instructions. A production API URL, Expo project link, signing credentials, and store accounts are required for publishing.
+
 ## API Endpoints
 
 ### Authentication
@@ -228,22 +246,37 @@ TMS-TEST-PROJECT/
 
 See [POSTMAN_SETUP.md](./POSTMAN_SETUP.md) for detailed instructions.
 
-## Frontend Features
+## Frontend Features & UI Redesign (v2.0)
 
-- **Login Screen**: JWT token-based authentication
-- **Protected Routes**: Routes protected by authentication and role
-- **Navigation**: Role-aware navigation menu
-- **Master Screens**: CRUD operations for all master data
-- **Responsive Design**: Mobile-friendly interface
+- **Ultra-Modern Glassmorphic UI**: High-contrast, dark obsidian theme with glowing accents, vibrant status indicators, and frosted glass cards.
+- **Floating Glass Navbar**:
+  - Organized "Master Directory ▾" dropdown for SuperAdmin so links never clutter.
+  - User capsule with avatar, role badge, and fast logout.
+  - Full mobile responsiveness with slide-down drawer menu.
+- **Priority SLA Management**: Tickets tagged with `Urgent`, `High`, `Medium`, `Low` with animated pulsing alerts for critical issues.
+- **Comprehensive Ticket Detail Modal**:
+  - Interactive stepper: `[Submitted] ➔ [Assigned] ➔ [In-Progress] ➔ [Resolved]`
+  - Full timeline log of all state updates, notes, and technician actions.
+  - Evidence preview for attached photos/documents.
+  - Work order assignment and resolution note entries.
+- **User Satisfaction Star Ratings (1-5 Stars)**: Users can rate technicians upon ticket closure and leave feedback reviews.
+- **Live Search & Multi-Filter Bar**: Real-time filtering by status pills, priority dropdown, and keyword search across title, ID, room, block, and staff.
+- **Visual Analytics & Report Generator**:
+  - KPI metric cards (Resolution Rate %, Quality Score, Urgent Backlog).
+  - Visual category & priority distribution progress bars.
+  - Filter query builder, CSV export, and print-ready layout.
+- **Toast Notification System**: Real-time animated feedback alerts for all actions.
+- **Demo Fast-Fill Credentials**: Instant 1-click test login for SuperAdmin, Staff, and Students.
 
 ## Available User Roles
 
-- SuperAdmin - Full access to all master screens
-- User - Regular user with limited access
+- SuperAdmin - Full access to all master screens, dispatching, and reports
+- User - Student/Faculty portal to raise tickets, track SLA, and rate service
 - Networking Staff - Access to networking-related complaints
 - Plumber - Access to plumbing-related complaints
 - Electrician - Access to electrical-related complaints
 - Software Developer - Access to software-related complaints
+- PC Hardware Staff - Access to computer hardware issues
 
 ## Environment Variables
 
